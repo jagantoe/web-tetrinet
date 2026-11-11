@@ -1,0 +1,298 @@
+/* Windows 95 look for the TetriNET recreation. Positions throughout the app use the exact
+   pixel coordinates from the original Delphi form resources. */
+
+:root {
+  --face: #c0c0c0; /* clBtnFace */
+  --hilite: #ffffff;
+  --light: #dfdfdf;
+  --shadow: #808080;
+  --dark: #000000;
+  --desktop: #008080;
+  --title: #000080;
+  --title-inactive: #808080;
+  --ui-font: 'MS Sans Serif', 'Microsoft Sans Serif', 'Pixelated MS Sans Serif', Tahoma, Arial, sans-serif;
+  --arial: Arial, 'Liberation Sans', Helvetica, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--desktop);
+  font-family: var(--arial);
+  font-size: 11px;
+  color: #000;
+  overflow: hidden;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+canvas {
+  image-rendering: pixelated;
+  display: block;
+}
+
+/* ---------- controls ---------- */
+
+.abs {
+  position: absolute;
+}
+
+.lbl {
+  position: absolute;
+  white-space: nowrap;
+  font-family: var(--arial);
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.btn {
+  position: absolute;
+  font-family: var(--arial);
+  font-size: 11px;
+  background: var(--face);
+  border: none;
+  padding: 0;
+  color: #000;
+  box-shadow:
+    inset -1px -1px var(--dark),
+    inset 1px 1px var(--hilite),
+    inset -2px -2px var(--shadow),
+    inset 2px 2px var(--light);
+  cursor: default;
+}
+.btn:active:not(:disabled),
+.btn.pressed {
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--dark),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--shadow);
+  padding-top: 2px;
+  padding-left: 2px;
+}
+.btn:focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+.btn:disabled {
+  color: var(--shadow);
+  text-shadow: 1px 1px var(--hilite);
+}
+
+.edit {
+  position: absolute;
+  font-family: var(--arial);
+  font-size: 11px;
+  background: #fff;
+  border: none;
+  padding: 2px 3px;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--dark);
+  outline: none;
+  color: #000;
+}
+.edit:disabled,
+.edit.disabled {
+  background: var(--face);
+  color: var(--shadow);
+}
+textarea.edit {
+  resize: none;
+}
+
+.sunken {
+  position: absolute;
+  background: #fff;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--dark);
+}
+
+.bevel-lowered {
+  position: absolute;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow);
+}
+
+.bevel-raised {
+  position: absolute;
+  box-shadow:
+    inset -1px -1px var(--shadow),
+    inset 1px 1px var(--hilite);
+}
+
+.panel {
+  position: absolute;
+  background: var(--face);
+  box-shadow:
+    inset -1px -1px var(--shadow),
+    inset 1px 1px var(--hilite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.group {
+  position: absolute;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.group::before {
+  content: '';
+  position: absolute;
+  inset: 6px 0 0 0;
+  border: 1px solid var(--shadow);
+  box-shadow:
+    inset 1px 1px var(--hilite),
+    1px 1px var(--hilite);
+  pointer-events: none;
+}
+.group > .caption {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  padding: 0 2px;
+  background: var(--face);
+  line-height: 13px;
+  font-size: 11px;
+}
+
+.check {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  user-select: none;
+}
+.check input {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  background: #fff;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--dark);
+  position: relative;
+}
+.check input:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 3px;
+  height: 7px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(40deg);
+}
+.check input:disabled {
+  background: var(--face);
+}
+
+.listbox {
+  position: absolute;
+  background: #fff;
+  overflow-y: auto;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--dark);
+  padding: 2px;
+}
+.listbox .item {
+  line-height: 14px;
+  height: 14px;
+  white-space: nowrap;
+  padding: 0 2px;
+  cursor: default;
+}
+.listbox .item.selected {
+  background: var(--title);
+  color: #fff;
+}
+
+.richbox {
+  position: absolute;
+  background: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 2px 3px;
+  box-shadow:
+    inset -1px -1px var(--hilite),
+    inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light),
+    inset 2px 2px var(--dark);
+  user-select: text;
+  font-family: var(--arial);
+  font-size: 11px;
+  line-height: 14px;
+  word-wrap: break-word;
+}
+.richbox.disabled-look {
+  background: #fff;
+}
+
+/* classic scrollbars */
+.richbox::-webkit-scrollbar,
+.listbox::-webkit-scrollbar {
+  width: 16px;
+}
+.richbox::-webkit-scrollbar-track,
+.listbox::-webkit-scrollbar-track {
+  background: #dfdfdf;
+}
+.richbox::-webkit-scrollbar-thumb,
+.listbox::-webkit-scrollbar-thumb {
+  background: var(--face);
+  box-shadow:
+    inset -1px -1px var(--dark),
+    inset 1px 1px var(--hilite),
+    inset -2px -2px var(--shadow);
+}
+
+.updown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+.updown button {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  font-size: 0;
+  padding: 0;
+}
+.updown button::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+}
+.updown button.up::after {
+  border-bottom: 3px solid #000;
+}
+.updown button.down::after {
+  border-top: 3px solid #000;
+}
