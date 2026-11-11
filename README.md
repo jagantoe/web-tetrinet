@@ -2,7 +2,7 @@
 
 A faithful browser recreation of **TetriNET v1.13** (St0rmCat, 1997). Up to six players, played **browser to browser**. You don't need to install anything or run a server.
 
-### **[▶ Play now](https://github.com/jagantoe/web-tetrinet)**
+### **[▶ Play now](https://jagantoe.github.io/web-tetrinet/)**
 
 ---
 
